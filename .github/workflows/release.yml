@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  setup:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -37,7 +37,15 @@ jobs:
 
       - name: build mdbook
         run: |
+
           mkdir bin
           curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.45/mdbook-v0.4.45-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
-          bin/mdbook build
+          /bin/mdbook build
           ls bin -la
+
+      - name: build website
+        run: |
+          echo $pwd
+          cd $GITHUB_WORKSPACE
+          echo $pwd
+          ls -la
