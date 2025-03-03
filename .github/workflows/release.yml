@@ -37,15 +37,8 @@ jobs:
 
       - name: build mdbook
         run: |
-
+          cd $GITHUB_WORKSPACE
           mkdir bin
           curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.45/mdbook-v0.4.45-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
           bin/mdbook build
-          ls bin -la
-
-      - name: build website
-        run: |
-          echo $pwd
-          cd $GITHUB_WORKSPACE
-          echo $pwd
-          ls -la
+          ls -la build
